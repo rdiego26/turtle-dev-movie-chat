@@ -15,8 +15,11 @@ export default function useComment (): [CommentType[] | null, any] {
   const handleSubmitComment = useCallback((event: any) => {
     event?.preventDefault()
     event?.stopPropagation()
+
     const content = event?.target?.elements?.comment?.value
+
     if (!content?.length) return
+
     database
       ?.createComment(content, movieId)
       ?.then(data => {
